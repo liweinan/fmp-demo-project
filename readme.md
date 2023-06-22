@@ -1031,5 +1031,16 @@ weli@192:~/w/fmp-demo-project|master⚡*?
 {"id":"7d91826c-dc50-4e81-9794-a266c3454702"}⏎
 ```
 
+```bash
+weli@192:~/w/fmp-demo-project|master⚡?
+➤ kubectl get service random-generator --output='jsonpath="{.spec.ports[0].nodePort}"'                                                                                                                                                         01:56:33
+
+"31034"⏎                                                                                                                                                                                                                                               weli@192:~/w/fmp-demo-project|master⚡?
+➤ kubectl get services                                                                                                                                                                                                                         01:57:25
+NAME               TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+kubernetes         ClusterIP   10.96.0.1      <none>        443/TCP          18d
+random-generator   NodePort    10.99.68.146   <none>        8080:31034/TCP   17m
+```
+
 
 
