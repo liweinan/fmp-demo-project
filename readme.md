@@ -722,3 +722,183 @@ index 3a8f26d..9b346ea 100644
 [INFO] Finished at: 2023-06-23T01:06:24+08:00
 [INFO] ------------------------------------------------------------------------
 ```
+
+```bash
+➤ mvn k8s:build
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< meetup:random-generator >-----------------------
+[INFO] Building random-generator 0.0.1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- kubernetes-maven-plugin:1.13.1:build (default-cli) @ random-generator ---
+[INFO] k8s: Building Docker image
+[INFO] k8s: Running generator spring-boot
+[INFO] k8s: spring-boot: Using Docker image quay.io/jkube/jkube-java:0.0.19 as base / builder
+[INFO] k8s: Pulling from jkube/jkube-java
+36c12cb044ac: Pull complete 
+e9452697801f: Pull complete 
+[INFO] k8s: Digest: sha256:b7d8650e04b282b9d7b94daedf38321512f9910bce896cd40ffa15b1b92bab17
+[INFO] k8s: Status: Downloaded newer image for quay.io/jkube/jkube-java:0.0.19
+[INFO] k8s: Pulled quay.io/jkube/jkube-java:0.0.19 in 10 minutes and 19 seconds 
+[INFO] k8s: [meetup/random-generator:0.0.1] "spring-boot": Created docker-build.tar in 193 milliseconds
+[INFO] k8s: [meetup/random-generator:0.0.1] "spring-boot": Built image sha256:31536
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10:27 min
+[INFO] Finished at: 2023-06-23T01:23:05+08:00
+[INFO] ------------------------------------------------------------------------
+weli@192:~/w/fmp-demo-project|master⚡*?
+➤
+```
+
+```bash
+➤ tree target/docker/meetup/random-generator/0.0.1/                                                                                                                                                                                            01:27:56
+target/docker/meetup/random-generator/0.0.1/
+├── build
+│   ├── Dockerfile
+│   ├── deployments
+│   └── jkube-generated-layer-original
+│       └── deployments
+│           └── random-generator-0.0.1.jar
+├── tmp
+│   └── docker-build.tar
+└── work
+
+6 directories, 3 files
+```
+
+```bash
+weli@192:~/w/f/t/d/m/r/0/tmp|master⚡*?
+➤ tar xvf docker-build.tar
+x jkube-generated-layer-original/
+x jkube-generated-layer-original/deployments/
+x jkube-generated-layer-original/deployments/random-generator-0.0.1.jar
+x Dockerfile
+x deployments/
+```
+
+```bash
+➤ cat Dockerfile
+FROM quay.io/jkube/jkube-java:0.0.19
+ENV JAVA_APP_DIR=/deployments
+LABEL org.label-schema.description="Demo project for Spring Boot" org.label-schema.version=0.0.1 org.label-schema.schema-version=1.0 org.label-schema.build-date=2023-06-23T01:12:40.336177 org.label-schema.name=random-generator org.label-schema.vcs-ref=16ff90c85f6cd0d0ec96572a60bf5d2bd9e6c0e2 org.label-schema.vcs-url=git@github.com:liweinan/fmp-demo-project.git
+EXPOSE 8080 8778 9779
+COPY /jkube-generated-layer-original/deployments /deployments/
+```
+
+```txt
+➤ mvn k8s:resource
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< meetup:random-generator >-----------------------
+[INFO] Building random-generator 0.0.1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- kubernetes-maven-plugin:1.13.1:resource (default-cli) @ random-generator ---
+[INFO] k8s: Running generator spring-boot
+[INFO] k8s: spring-boot: Using Docker image quay.io/jkube/jkube-java:0.0.19 as base / builder
+[INFO] k8s: Using resource templates from /Users/weli/works/fmp-demo-project/src/main/jkube
+[INFO] k8s: jkube-controller: Adding a default Deployment
+[INFO] k8s: jkube-service: Adding a default service 'random-generator' with ports [8080]
+[INFO] k8s: jkube-healthcheck-spring-boot: Adding readiness probe on port 8080, path='/actuator/health', scheme='HTTP', with initial delay 10 seconds
+[INFO] k8s: jkube-healthcheck-spring-boot: Adding liveness probe on port 8080, path='/actuator/health', scheme='HTTP', with initial delay 180 seconds
+[INFO] k8s: jkube-service-discovery: Using first mentioned service port '8080' 
+[INFO] k8s: jkube-revision-history: Adding revision history limit to 2
+[INFO] k8s: validating /Users/weli/works/fmp-demo-project/target/classes/META-INF/jkube/kubernetes/random-generator-deployment.yml resource
+[WARNING] k8s: Invalid Resource : /Users/weli/works/fmp-demo-project/target/classes/META-INF/jkube/kubernetes/random-generator-deployment.yml
+[message=.spec.template.spec.containers[0].readinessProbe.httpGet.port：找到 integer，预期为 object, violation type=type]
+[message=.spec.template.spec.containers[0].livenessProbe.httpGet.port：找到 integer，预期为 object, violation type=type]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.099 s
+[INFO] Finished at: 2023-06-23T01:36:30+08:00
+[INFO] ------------------------------------------------------------------------
+```
+
+```txt
+weli@192:~/w/fmp-demo-project|master⚡*?
+➤ cat /Users/weli/works/fmp-demo-project/target/classes/META-INF/jkube/kubernetes/random-generator-deployment.yml                                                                                                                              01:38:55
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    jkube.eclipse.org/git-commit: 16ff90c85f6cd0d0ec96572a60bf5d2bd9e6c0e2
+    jkube.eclipse.org/git-url: git@github.com:liweinan/fmp-demo-project.git
+    jkube.eclipse.org/scm-url: https://github.com/spring-projects/spring-boot/spring-boot-starter-parent/random-generator
+    jkube.eclipse.org/git-branch: master
+    jkube.eclipse.org/scm-tag: HEAD
+  labels:
+    app: random-generator
+    provider: jkube
+    version: 0.0.1
+    group: meetup
+  name: random-generator
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: random-generator
+      provider: jkube
+      group: meetup
+  template:
+    metadata:
+      annotations:
+        jkube.eclipse.org/git-commit: 16ff90c85f6cd0d0ec96572a60bf5d2bd9e6c0e2
+        jkube.eclipse.org/git-url: git@github.com:liweinan/fmp-demo-project.git
+        jkube.eclipse.org/scm-url: https://github.com/spring-projects/spring-boot/spring-boot-starter-parent/random-generator
+        jkube.eclipse.org/git-branch: master
+        jkube.eclipse.org/scm-tag: HEAD
+      labels:
+        app: random-generator
+        provider: jkube
+        version: 0.0.1
+        group: meetup
+      name: random-generator
+    spec:
+      containers:
+      - env:
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        image: meetup/random-generator:0.0.1
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /actuator/health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 180
+          successThreshold: 1
+        name: spring-boot
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        - containerPort: 9779
+          name: prometheus
+          protocol: TCP
+        - containerPort: 8778
+          name: jolokia
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /actuator/health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+          successThreshold: 1
+        securityContext:
+          privileged: false
+```
