@@ -902,3 +902,134 @@ spec:
         securityContext:
           privileged: false
 ```
+
+```txt
+weli@192:~/w/fmp-demo-project|master⚡?
+➤ mvn k8s:deploy                                                                                                                                                                                                                               01:39:31
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< meetup:random-generator >-----------------------
+[INFO] Building random-generator 0.0.1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> kubernetes-maven-plugin:1.13.1:deploy (default-cli) > install @ random-generator >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ random-generator ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ random-generator ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ random-generator ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/weli/works/fmp-demo-project/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ random-generator ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ random-generator ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running meetup.randomgenerator.RandomGeneratorApplicationTests
+01:40:00.309 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class meetup.randomgenerator.RandomGeneratorApplicationTests]
+01:40:00.312 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+01:40:00.317 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+01:40:00.330 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [meetup.randomgenerator.RandomGeneratorApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+01:40:00.337 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [meetup.randomgenerator.RandomGeneratorApplicationTests], using SpringBootContextLoader
+01:40:00.339 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [meetup.randomgenerator.RandomGeneratorApplicationTests]: class path resource [meetup/randomgenerator/RandomGeneratorApplicationTests-context.xml] does not exist
+01:40:00.339 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [meetup.randomgenerator.RandomGeneratorApplicationTests]: class path resource [meetup/randomgenerator/RandomGeneratorApplicationTestsContext.groovy] does not exist
+01:40:00.340 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [meetup.randomgenerator.RandomGeneratorApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+01:40:00.341 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [meetup.randomgenerator.RandomGeneratorApplicationTests]: RandomGeneratorApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+01:40:00.369 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [meetup.randomgenerator.RandomGeneratorApplicationTests]
+01:40:00.415 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/weli/works/fmp-demo-project/target/classes/meetup/randomgenerator/RandomGeneratorApplication.class]
+01:40:00.422 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration meetup.randomgenerator.RandomGeneratorApplication for test class meetup.randomgenerator.RandomGeneratorApplicationTests
+01:40:00.486 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [meetup.randomgenerator.RandomGeneratorApplicationTests]: using defaults.
+01:40:00.486 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+01:40:00.493 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+01:40:00.493 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+01:40:00.493 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6bedbc4d, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@932bc4a, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@d29f28, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@2fd1433e, org.springframework.test.context.support.DirtiesContextTestExecutionListener@29d89d5d, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3514a4c0, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@212b5695, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@446293d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@69997e9d, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@793be5ca]
+01:40:00.494 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [meetup.randomgenerator.RandomGeneratorApplicationTests]
+01:40:00.494 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [meetup.randomgenerator.RandomGeneratorApplicationTests]
+01:40:00.495 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [meetup.randomgenerator.RandomGeneratorApplicationTests]
+01:40:00.495 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [meetup.randomgenerator.RandomGeneratorApplicationTests]
+01:40:00.495 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [meetup.randomgenerator.RandomGeneratorApplicationTests]
+01:40:00.496 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [meetup.randomgenerator.RandomGeneratorApplicationTests]
+01:40:00.498 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@5fbdfdcf testClass = RandomGeneratorApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@4efc180e testClass = RandomGeneratorApplicationTests, locations = '{}', classes = '{class meetup.randomgenerator.RandomGeneratorApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@5d47c63f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4ae3c1cd, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2c34f934, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@55a561cf], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+01:40:00.498 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [meetup.randomgenerator.RandomGeneratorApplicationTests]
+01:40:00.498 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [meetup.randomgenerator.RandomGeneratorApplicationTests]
+01:40:00.515 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.8.RELEASE)
+
+2023-06-23 01:40:00.752  INFO 77676 --- [           main] m.r.RandomGeneratorApplicationTests      : Starting RandomGeneratorApplicationTests on 192.168.0.106 with PID 77676 (started by weli in /Users/weli/works/fmp-demo-project)
+2023-06-23 01:40:00.754  INFO 77676 --- [           main] m.r.RandomGeneratorApplicationTests      : No active profile set, falling back to default profiles: default
+2023-06-23 01:40:00.803  INFO 77676 --- [           main] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-23 01:40:02.522  INFO 77676 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-06-23 01:40:02.979  WARN 77676 --- [           main] .s.b.d.a.RemoteDevToolsAutoConfiguration : Listening for remote restart updates on /.~~spring-boot!~/restart
+2023-06-23 01:40:03.012  INFO 77676 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2023-06-23 01:40:03.068  INFO 77676 --- [           main] m.r.RandomGeneratorApplicationTests      : Started RandomGeneratorApplicationTests in 2.546 seconds (JVM running for 3.104)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.222 s - in meetup.randomgenerator.RandomGeneratorApplicationTests
+2023-06-23 01:40:03.416  INFO 77676 --- [       Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ random-generator ---
+[INFO] Building jar: /Users/weli/works/fmp-demo-project/target/random-generator-0.0.1.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.1.8.RELEASE:repackage (repackage) @ random-generator ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] 
+[INFO] --- maven-install-plugin:2.5.2:install (default-install) @ random-generator ---
+[INFO] Installing /Users/weli/works/fmp-demo-project/target/random-generator-0.0.1.jar to /Users/weli/.m2/repository/meetup/random-generator/0.0.1/random-generator-0.0.1.jar
+[INFO] Installing /Users/weli/works/fmp-demo-project/pom.xml to /Users/weli/.m2/repository/meetup/random-generator/0.0.1/random-generator-0.0.1.pom
+[INFO] 
+[INFO] <<< kubernetes-maven-plugin:1.13.1:deploy (default-cli) < install @ random-generator <<<
+[INFO] 
+[INFO] 
+[INFO] --- kubernetes-maven-plugin:1.13.1:deploy (default-cli) @ random-generator ---
+[INFO] k8s: Using Kubernetes at https://127.0.0.1:62259/ in namespace null with manifest /Users/weli/works/fmp-demo-project/target/classes/META-INF/jkube/kubernetes.yml 
+[INFO] k8s: Creating a Service from kubernetes.yml namespace default name random-generator
+[INFO] k8s: Created Service: target/jkube/applyJson/default/service-random-generator.json
+[INFO] k8s: Creating a Deployment from kubernetes.yml namespace default name random-generator
+[INFO] k8s: Created Deployment: target/jkube/applyJson/default/deployment-random-generator.json
+[INFO] k8s: HINT: Use the command `kubectl get pods -w` to watch your pods start up
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.549 s
+[INFO] Finished at: 2023-06-23T01:40:07+08:00
+[INFO] ------------------------------------------------------------------------
+weli@192:~/w/fmp-demo-project|master⚡?
+➤
+```
+
+- [https://minikube.sigs.k8s.io/docs/handbook/accessing/](https://minikube.sigs.k8s.io/docs/handbook/accessing/)
+
+```bash
+weli@192:~/w/fmp-demo-project|master⚡*?
+➤ minikube service random-generator --url                                                                                                                                                                                                      01:53:36
+http://127.0.0.1:52733
+❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
+```
+
+```bash
+weli@192:~/w/fmp-demo-project|master⚡*?
+➤ curl http://127.0.0.1:52733/random                                    01:55:08
+{"id":"7d91826c-dc50-4e81-9794-a266c3454702"}⏎
+```
+
+
+
